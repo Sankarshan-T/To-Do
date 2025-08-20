@@ -1,0 +1,145 @@
+@font-face {
+    font-family: monday;
+    src: url("fonts/MondayFeelings-7BD2l.ttf");
+}
+
+@font-face {
+    font-family: lemon;
+    src: url("fonts/LemonMilkBold-gx2B3.otf");
+}
+
+body {
+    margin: 0;
+    display: flex;
+    font-family: lemon;
+    background-color: #ffd5eb;
+}
+
+.sidebar {
+    width: 60px;
+    background-color: #a71a65;
+    color: white;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.sidebar:hover {
+    width: 200px;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    white-space: nowrap;
+}
+
+.logo-title img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.title {
+    font-size: 1.5em;
+    font-family: lemon;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .title {
+    opacity: 1;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.menu a {
+    width: 100%;
+    text-decoration: none;
+}
+
+.menu button {
+    white-space: nowrap;
+    font-family: monday;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1em;
+    padding: 15px 15px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1;
+}
+
+.menu button i {
+    font-size: 1.2em;
+    min-width: 20px;
+}
+
+.menu button span {
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .menu button span {
+    opacity: 1;
+}
+
+.menu button:hover {
+    color: #A3BFFA;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+}
+
+.heading {
+    font-size: 6em;
+    color: #d50438;
+}
+
+.text {
+    margin-top: -50px;
+    font-family: monday;
+    font-size: 1.2em;
+    color: #4c0114;
+}
+
+.startLink {
+    text-decoration: none;
+    font-size: 5em;
+}
+
+.startBtn {
+    text-decoration: none;
+    color: white;
+    font-size: 0.23em;
+    font-family: monday;
+    width: 10%;
+    height: auto;
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0px 0px 20px 0px #4c0114;
+    background-image: linear-gradient(135deg, #ff86a5, #a50029);
+    transition: width 0.3s ease;
+}
+
+.startBtn:hover {
+    width: 15%;
+    box-shadow: 0px 0px 20px 8px #4c0114;
+}
