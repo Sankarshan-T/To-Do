@@ -13,7 +13,7 @@ body {
     display: flex;
     font-family: lemon;
     background-color: #ffd5eb;
-}
+}   
 
 .sidebar {
     width: 60px;
@@ -25,7 +25,7 @@ body {
 }
 
 .sidebar:hover {
-    width: 200px;
+    width: 210px;
 }
 
 .logo-title {
@@ -100,46 +100,110 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-
 .main-content {
-    flex: 1;
-    padding: 20px;
-    text-align: center;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    width: 100%;
+    height: 100vh;
+    display: block;
+    justify-content: center;
 }
 
-.heading {
-    font-size: 6em;
-    color: #d50438;
+.bg1 {
+    width: 100%;
+    height: 100vh;
+    background-color: #ffd5eb;
 }
 
-.text {
-    margin-top: -50px;
+.bg2 {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #ffb8dd;
+}
+.bg3 {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #ff69b7;
+}
+.bg4 {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #f58edd;
+}
+
+.sect1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.sect2 {
+    display: inline-flex;
+}
+
+
+.listbtn {
+    width: 50px;
+    height: 50px;
+    margin-top: 80px;
+    margin-left: 80px;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: rgb(255, 230, 243);
+    transition: box-shadow 0.3s ease;
+}
+
+.listbtn:hover {
+    box-shadow: 0 0 5px 5px rgb(255, 148, 203);
+}
+
+.plus {
+    font-size: 2em;
+}
+
+.createtxt {
+    margin-top: 95px;
+    margin-left: 30px;
+    font-size: 1em;
     font-family: monday;
-    font-size: 1.2em;
-    color: #4c0114;
+    color: #770018;
 }
 
-.startLink {
-    text-decoration: none;
+.heading1 {
+    margin-top: 150px;
+    margin-bottom: 0;
+    text-align: center;
+    color: #a80d0d;
     font-size: 5em;
 }
 
-.startBtn {
-    text-decoration: none;
-    color: white;
-    font-size: 0.23em;
-    font-family: monday;
-    width: 10%;
-    height: auto;
-    padding: 20px;
-    border-radius: 20px;
+.text1 {
+   text-align: center;
+   font-family: monday; 
+   font-size: 1.25em;
+}
+
+
+.startBtn1 {
+    height: 4rem;
+    width: 12rem;
+    background: linear-gradient(135deg, #a80d2c, #ff9cca);
     border: none;
-    box-shadow: 0px 0px 20px 0px #4c0114;
-    background-image: linear-gradient(135deg, #ff86a5, #a50029);
+    border-radius: 20px;
+    font-family: monday;
+    font-size: 1.5em;
+    color: #FFFFFF;
+    box-shadow: 0 0 15px 5px #cd0029;
     transition: width 0.3s ease;
 }
 
-.startBtn:hover {
-    width: 15%;
-    box-shadow: 0px 0px 20px 8px #4c0114;
+.startBtn1:hover {
+    width: 15rem;
+    box-shadow: 0 0 15px 5px #770018;
 }
+
+
