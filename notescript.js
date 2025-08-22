@@ -1,5 +1,8 @@
+import {my_new_list} from 'listsstorage.js'
+
 const inputBox = document.getElementById("input-box")
 const listContainer = document.getElementById("list-container")
+
 
 document.getElementById("changeTitleBtn").addEventListener("click", function() {
     const newTitle = document.getElementById("title").value;
@@ -37,6 +40,8 @@ listContainer.addEventListener("click", function(e){
 
 function saveData(){
     localStorage.setItem("data", listContainer.innerHTML);
+    my_new_list.append("1")
+    console.log(my_new_list)
 }
 
 function showTask() {

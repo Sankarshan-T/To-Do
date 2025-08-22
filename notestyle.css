@@ -13,7 +13,7 @@ body {
     display: flex;
     font-family: lemon;
     background-color: #ffd5eb;
-}   
+}
 
 .sidebar {
     width: 60px;
@@ -107,7 +107,7 @@ body {
 
 .content {
     width: 100%;
-    overflow-x:scroll;
+    overflow-x: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
@@ -142,6 +142,7 @@ body {
     color: #ffd5eb;
 }
 
+
 .changebtn {
     position: relative;
     left: 15px;
@@ -161,7 +162,7 @@ body {
     min-height: 80vh;
     min-width: 100vh;
     border-radius: 20px;
-    background: linear-gradient(135deg, #bf1e76, #ffa4d6 );
+    background: linear-gradient(135deg, #bf1e76, #ffa4d6);
     padding: 10px;
     padding-bottom: 25px;
     display: flex;
@@ -204,7 +205,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background:#f36dc8;
+    background: #f36dc8;
     border-radius: 30px;
     padding-left: 20px;
     margin-bottom: 25px;
@@ -227,7 +228,7 @@ button {
     outline: none;
     padding: 16px 50px;
     color: #f1bbd9;
-    background:#ff1281;
+    background: #ff1281;
     font-size: 1em;
     cursor: pointer;
     border-radius: 40px;
