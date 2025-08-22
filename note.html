@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title id="page-title">*List*</title>
+        <link rel="icon" type="image/x-icon" href="imgs/logo2.png"> 
+        <link rel="stylesheet" href="notestyle.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    </head>
+    <body>
+        <nav class="sidebar">
+            <div class="logo-title">
+                <img src="imgs/logo2.png" alt="Logo">
+                <h1 class="title">Task<br>Trackr!</h1>
+            </div>
+
+            <div class="menu">
+                <a href="index.html"><button><i class="fas fa-home"></i><span>Home</span></button></a>
+                <a href="index.html"><button><i class="fas fa-clipboard-list"></i><span>My Lists</span></button></a>
+                <a href="index.html"><button><i class="fas fa-copy"></i><span>Templates</span></button></a>
+                <a href="index.html"><button><i class="fas fa-info-circle"></i><span>About</span></button></a>
+            </div>
+        </nav>
+
+        <div class="content">
+
+            <div class="titlecont">
+                <input class="titletext" type="text" id="title" placeholder="List 1">
+                <button class="changebtn" id="changeTitleBtn">Save</button>
+            </div>
+
+            <div class="todocont">
+                <div class="todoapp">
+                    <div class="appcont">
+                        <h2>To-do <i class="fa-solid fa-clipboard-list"></i></h2>
+                    </div>
+                    <div class="row">
+                        <input type="text" id="input-box" placeholder="Enter your task here...">
+                        <button onclick="addTask()">Add</button>
+                    </div>
+                    <div class="listcont">
+                        <ul id="list-container">
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <script src="notescript.js"></script>
+    </body>
+</html>

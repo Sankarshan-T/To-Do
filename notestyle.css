@@ -1,0 +1,293 @@
+@font-face {
+    font-family: pine;
+    src: url("fonts/PineWords-xRZZR.ttf");
+}
+
+@font-face {
+    font-family: lemon;
+    src: url("fonts/LemonMilkBold-gx2B3.otf");
+}
+
+body {
+    margin: 0;
+    display: flex;
+    font-family: lemon;
+    background-color: #ffd5eb;
+}   
+
+.sidebar {
+    width: 60px;
+    background-color: #a71a65;
+    color: white;
+    transition: width 0.3s ease;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.sidebar:hover {
+    width: 210px;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    white-space: nowrap;
+}
+
+.logo-title img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.title {
+    font-size: 1.5em;
+    font-family: lemon;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .title {
+    opacity: 1;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.menu a {
+    width: 100%;
+    text-decoration: none;
+}
+
+.menu button {
+    white-space: nowrap;
+    font-family: pine;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1em;
+    padding: 15px 15px;
+    text-align: left;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1;
+}
+
+.menu button i {
+    font-size: 1.2em;
+    min-width: 20px;
+}
+
+.menu button span {
+    margin-left: 10px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar:hover .menu button span {
+    opacity: 1;
+}
+
+.menu button:hover {
+    color: #A3BFFA;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.maintext {
+    margin-top: 60px;
+    margin-left: 60px;
+}
+
+.content {
+    width: 100%;
+    overflow-x:scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+
+.titlecont {
+    position: relative;
+    top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.titletext {
+    max-width: 200px;
+    height: 40px;
+    text-align: center;
+    font-family: lemon;
+    resize: none;
+    font-size: 1.5em;
+    color: white;
+    background-color: #da3d93;
+    border: 1px solid black;
+    border-radius: 7px;
+}
+
+.titletext::placeholder {
+    color: #ffd5eb;
+}
+
+.changebtn {
+    position: relative;
+    left: 15px;
+    top: 4px;
+    text-align: center;
+    padding: 0;
+    border-radius: 20px;
+    height: 35px;
+    width: 100px;
+}
+
+.todocont {
+    margin-top: 50px;
+    margin-left: 60px;
+    width: 90%;
+    height: fit-content;
+    min-height: 80vh;
+    min-width: 100vh;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #bf1e76, #ffa4d6 );
+    padding: 10px;
+    padding-bottom: 25px;
+    display: flex;
+    /*align-items: center;*/
+    justify-content: center;
+}
+
+.todoapp {
+    width: 100%;
+    max-width: 540px;
+    height: fit-content;
+    background: #ffc7e6a0;
+    margin-top: 30px;
+    padding: 40px 30px 70px;
+    border-radius: 10px;
+
+}
+
+.appcont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.todoapp h2 {
+    color: #931056;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+}
+
+.todoapp h2 i {
+    margin-left: 10px;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background:#f36dc8;
+    border-radius: 30px;
+    padding-left: 20px;
+    margin-bottom: 25px;
+}
+
+input {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 10px;
+}
+
+#input-box::placeholder {
+    color: #482a3a;
+}
+
+button {
+    border: none;
+    outline: none;
+    padding: 16px 50px;
+    color: #f1bbd9;
+    background:#ff1281;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 40px;
+}
+
+ul li {
+    list-style: none;
+    font-size: 1.5em;
+    font-family: pine;
+    color: #280418;
+    padding: 12px 8px 12px 35px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+}
+
+ul li::before {
+    content: '';
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-image: url('imgs/unchecked.svg');
+    background-size: cover;
+    background-position: center;
+    top: 18px;
+    left: 0px;
+}
+
+ul li.checked {
+    color: #ff3b69;
+    text-decoration: line-through;
+}
+
+ul li.checked::before {
+    content: '';
+    position: absolute;
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    background-image: url('imgs/checked.svg');
+    background-size: cover;
+    background-position: center;
+    top: 18px;
+    left: 0px;
+}
+
+ul li span {
+    position: absolute;
+    right: 20;
+    top: 15px;
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+    color: #610059;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 50px;
+}
+
+ul li span:hover {
+    background: #a71a65;
+}

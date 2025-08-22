@@ -1,6 +1,6 @@
 @font-face {
-    font-family: monday;
-    src: url("fonts/MondayFeelings-7BD2l.ttf");
+    font-family: pine;
+    src: url("fonts/PineWords-xRZZR.ttf");
 }
 
 @font-face {
@@ -66,7 +66,7 @@ body {
 
 .menu button {
     white-space: nowrap;
-    font-family: monday;
+    font-family: pine;
     background: none;
     border: none;
     color: white;
@@ -142,14 +142,25 @@ body {
 }
 
 .sect2 {
-    display: inline-flex;
+    padding-top: 30px;
 }
 
+.content {
+    margin-top: 20px;
+    display: flex;
+}
+
+.heading2 {
+    margin-top: 0px;
+    text-align: center;
+    color: #d42b2b;
+    font-size: 2.5em;
+}
 
 .listbtn {
     width: 50px;
     height: 50px;
-    margin-top: 80px;
+    margin-top: 0px;
     margin-left: 80px;
     border-radius: 10px;
     border: 1px solid black;
@@ -166,10 +177,10 @@ body {
 }
 
 .createtxt {
-    margin-top: 95px;
+    margin-top: 10px;
     margin-left: 30px;
     font-size: 1em;
-    font-family: monday;
+    font-family: pine;
     color: #770018;
 }
 
@@ -181,9 +192,11 @@ body {
     font-size: 5em;
 }
 
+
+
 .text1 {
    text-align: center;
-   font-family: monday; 
+   font-family: pine; 
    font-size: 1.25em;
 }
 
@@ -194,7 +207,7 @@ body {
     background: linear-gradient(135deg, #a80d2c, #ff9cca);
     border: none;
     border-radius: 20px;
-    font-family: monday;
+    font-family: pine;
     font-size: 1.5em;
     color: #FFFFFF;
     box-shadow: 0 0 15px 5px #cd0029;
