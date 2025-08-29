@@ -4,7 +4,7 @@ function popup() {
     const popupContainer = document.createElement("div");
     popupContainer.innerHTML = `
     <div id="popup-container">
-        <h1> List 1 </h1>
+        <input type="text" id="list-title" placeholder="Enter list title..." />
         
         <div class ="items">
             <div class="row">
@@ -14,7 +14,7 @@ function popup() {
 
         
             <div id="list-container">
-                <ul>
+                <ul id="taskdisplay">
                 </ul>
             </div>
         </div>
@@ -45,28 +45,29 @@ function popup() {
 function createList() { 
     const popupContainer = document.getElementById("popup-container");
     const listContainer = document.getElementById("list-container");
-    
-        const list = {
-            id: new Date().getTime(),
-            list: JSON.stringify(listContainer),
-        };
+    const listTitle = document.getElementById("list-title").value;
 
-        let existingLists = JSON.parse(localStorage.getItem('lists'))  || [];
+    const list = {
+        id: new Date().getTime(),
+        title: listTitle || "Untitled",
+        list: listContainer.innerHTML
+    };
 
-        if (!Array.isArray(existingLists)) {
-            existingLists = [];  
-        }
+    let existingLists = JSON.parse(localStorage.getItem('lists'))  || [];
 
-        existingLists.push(list);
+    if (!Array.isArray(existingLists)) {
+        existingLists = [];  
+    }
 
-        localStorage.setItem('lists', JSON.stringify(existingLists));
-        document.getElementById('list-container').value = '';
-        
-        console.log("removing");
-        popupContainer.remove();
-        displayLists();
-        
+    existingLists.push(list);
+
+    localStorage.setItem('lists', JSON.stringify(existingLists));
+    document.getElementById('list-container').value = '';
+            
+    popupContainer.remove();
+    displayLists();
 }
+        
 
 
 function closePopup() {
@@ -86,7 +87,7 @@ function displayLists() {
         const listitem = document.createElement("li");
         listitem.classList.add("list");
         listitem.innerHTML = `
-        <span>1</span>
+        <span>${list.title}</span>
         <div id="noteBtns-container">
             <button id="editBtn" onclick="editList(${list.id})"><i class="fa-solid fa-pen"></i></button>
             <button id="deleteBtn" onclick="deleteNote(${list.id})"><i class="fa-solid fa-trash"></i></button>
@@ -98,13 +99,45 @@ function displayLists() {
 }
 
  function editList(listId) {
+    listContainer.innerHTML = listToEdit.list;
     const lists = JSON.parse(localStorage.getItem('lists')) || [];
-    const listContainer = document.getElementById("list-container");
-    const editingPopup = document.createElement("div");
+    const listToEdit = lists.find(list => list.id === listId);
 
-    editingPopup.innerHTML
+    if (!listToEdit) return;
+
+    popup();
+
+    const listContainer = document.getElementById("list-container");
+    listContainer.innerHTML = listToEdit.list;
+
+    const submitBtn = document.getElementById("submitBtn");
+    submitBtn.textContent = "Update Note";
+
+    submitBtn.onclick = function () {
+        listToEdit.title = document.getElementById("list-title").value || "Untitled";
+        listToEdit.list = listContainer.innerHTML;
+    
+
+    const updatedLists = lists.map(list =>
+            list.id === listId ? listToEdit : list
+    );
+
+    localStorage.setItem('lists', JSON.stringify(updatedLists));
+    closePopup();
+    displayLists();
+    };
 
 } 
+
+function deleteNote(listId) {
+    let lists = JSON.parse(localStorage.getItem('lists')) || [];
+
+    lists = lists.filter(list => list.id !== listId);
+
+    localStorage.setItem('lists', JSON.stringify(lists));
+
+    displayLists();
+}
 
 function addTask() {
        const inputBox = document.getElementById("input-box");  

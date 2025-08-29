@@ -293,3 +293,13 @@ body {
 #list-container li span:hover {
     background: #a71a65;
 }
+
+#list-title {
+    margin: 20px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #ff8aca;
+    text-align: center;
+    font-size: 1.5em;
+}

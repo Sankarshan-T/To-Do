@@ -138,7 +138,25 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+}
+
+.sect2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.sect3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sect4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 
@@ -150,6 +168,13 @@ body {
 
 .heading1 {
     margin-top: 150px;
+    margin-bottom: 0;
+    text-align: center;
+    color: #a80d0d;
+    font-size: 5em;
+}
+.comingsoon {
+    margin-top: 20vh;
     margin-bottom: 0;
     text-align: center;
     color: #a80d0d;
@@ -183,13 +208,6 @@ body {
     box-shadow: 0 0 15px 5px #770018;
 }
 
-.sect2 {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 
 .heading2 {
     margin-top: 0px;
@@ -199,6 +217,7 @@ body {
 }
 
 #content {
+    margin-top:20px;
     background-color: #f58edd;
     border-radius: 8px;
     box-shadow: 0 10px 15px 10px rgb(0, 0, 0, 0.3);
@@ -364,26 +383,6 @@ body {
     display: flex;
 }
 
-
-
-#editing-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 1000px;
-    height: 600px;
-    background-color: rgb(255, 184, 244);
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-}
 
 #submitBtn, #closeBtn {
     width: 150px;
