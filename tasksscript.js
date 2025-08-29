@@ -102,8 +102,7 @@ function displayLists() {
     
     const lists = JSON.parse(localStorage.getItem('lists')) || [];
     const listToEdit = lists.find(list => list.id === listId);
-    listContainer.innerHTML = listToEdit.list;
-
+    
     if (!listToEdit) return;
 
     popup();
