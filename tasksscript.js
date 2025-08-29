@@ -103,12 +103,17 @@ function displayLists() {
     const lists = JSON.parse(localStorage.getItem('lists')) || [];
     const listToEdit = lists.find(list => list.id === listId);
     
+
     if (!listToEdit) return;
 
     popup();
 
     const listContainer = document.getElementById("list-container");
+    const listTitleInput = document.getElementById("list-title");
+
     listContainer.innerHTML = listToEdit.list;
+    listTitleInput.value = listToEdit.title;
+
 
     const submitBtn = document.getElementById("submitBtn");
     submitBtn.textContent = "Update Note";
