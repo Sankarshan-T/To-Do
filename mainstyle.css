@@ -268,16 +268,19 @@ body {
     justify-content: left;
 }
 
-ul {
+#tasks-list {
     list-style-type: none;
     padding: 0;
     margin: 0;
     flex-wrap: wrap;
     text-align: center;
+    display: inline-flex;
+    justify-content: space-between;
 }
 
-li {
-    background-color: #fff385;
+.list {
+    color: #ffd8f8;
+    background-color: #950032;
     margin: 5px 0;
     padding: 20px;
     border-radius: 8px;
@@ -292,11 +295,19 @@ li {
     box-shadow: 9px 9px 18px #b3b3b3 -9px -9px 18px #fff;
 }
 
-li span {
-    font-size: 12px;
+.list span::-webkit-scrollbar {
+    display: none;
+}
+
+
+.list span {
+    margin-top: 30%;
+    font-size: 2em;
     flex-grow: 1;
     word-wrap: break-word;
     overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 #editBtn,
@@ -313,7 +324,7 @@ li span {
 }
 
 #editBtn {
-    background-color: gainsboro;
+    background-color: rgb(255, 39, 201);
 }
 
 #editBtn:hover {
@@ -324,14 +335,14 @@ li span {
     background-color: #75003b;
 }
 
-#popupCont {
+#popup-container {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
-    height: 300px;
-    background-color: white;
+    width: 900px;
+    height: 550px;
+    background-color: rgb(255, 184, 244);
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -339,29 +350,20 @@ li span {
     display: flex;
     flex-direction: column;
     text-align: center;
-    align-items: center;
-    justify-content: center;
+    align-items: center; 
+    overflow-y: scroll;  
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+#popup-container::-webkit-scrollbar {
+    display: none;
 }
 
 #btn-container {
     display: flex;
 }
 
-#submitBtn, #closeBtn {
-    width: 100px;
-    background-color: #8c53ff;
-    color: #fff;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    cursor: pointer;
-    margin: 10px;
-}
-
-#closeBtn {
-    background-color: gainsboro;
-}
 
 
 #editing-container {
@@ -369,9 +371,9 @@ li span {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 400px;
-    height: 300px;
-    background-color: white;
+    width: 1000px;
+    height: 600px;
+    background-color: rgb(255, 184, 244);
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -384,8 +386,8 @@ li span {
 }
 
 #submitBtn, #closeBtn {
-    width: 100px;
-    background-color: #8c53ff;
+    width: 150px;
+    background-color: #ff22b5;
     color: #fff;
     font-size: 14px;
     border: none;
@@ -393,8 +395,11 @@ li span {
     padding: 10px;
     cursor: pointer;
     margin: 10px;
+    font-family: pine;
+    font-weight: 100;
 }
 
 #closeBtn {
-    background-color: gainsboro;
+    background-color: rgb(58, 58, 58);
 }
+

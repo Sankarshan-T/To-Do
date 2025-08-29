@@ -210,7 +210,7 @@ body {
     margin-bottom: 25px;
 }
 
-input {
+#input-box {
     flex: 1;
     border: none;
     outline: none;
@@ -222,7 +222,7 @@ input {
     color: #482a3a;
 }
 
-button {
+.add {
     border: none;
     outline: none;
     padding: 16px 50px;
@@ -233,7 +233,8 @@ button {
     border-radius: 40px;
 }
 
-ul li {
+
+#list-container li {
     list-style: none;
     font-size: 1.5em;
     font-family: pine;
@@ -242,9 +243,10 @@ ul li {
     user-select: none;
     cursor: pointer;
     position: relative;
+    text-align: left;
 }
 
-ul li::before {
+#list-container li::before {
     content: '';
     position: absolute;
     height: 28px;
@@ -257,12 +259,12 @@ ul li::before {
     left: 0px;
 }
 
-ul li.checked {
+#list-container li.checked {
     color: #ff3b69;
     text-decoration: line-through;
 }
 
-ul li.checked::before {
+#list-container li.checked::before {
     content: '';
     position: absolute;
     height: 28px;
@@ -275,7 +277,7 @@ ul li.checked::before {
     left: 0px;
 }
 
-ul li span {
+#list-container li span {
     position: absolute;
     right: 20;
     top: 15px;
@@ -288,6 +290,6 @@ ul li span {
     border-radius: 50px;
 }
 
-ul li span:hover {
+#list-container li span:hover {
     background: #a71a65;
 }
