@@ -14,7 +14,7 @@ function popup() {
 
         
             <div id="list-container">
-                <ul id="taskdisplay">
+                <ul>
                 </ul>
             </div>
         </div>
