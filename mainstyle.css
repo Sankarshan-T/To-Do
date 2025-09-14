@@ -13,15 +13,15 @@ body {
     display: flex;
     font-family: lemon;
     background-color: #ffd5eb;
-}   
+}
 
 .sidebar {
     width: 60px;
+    height: 100vh;
     background-color: #a71a65;
     color: white;
-    transition: width 0.3s ease;
     overflow: hidden;
-    height: 100vh;
+    transition: width 0.3s ease;
 }
 
 .sidebar:hover {
@@ -54,9 +54,9 @@ body {
 .menu {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: flex-start;
     padding: 10px;
+    justify-content: space-evenly;
 }
 
 .menu a {
@@ -65,19 +65,19 @@ body {
 }
 
 .menu button {
-    white-space: nowrap;
     font-family: pine;
+    font-size: 1em;
     background: none;
     border: none;
     color: white;
-    font-size: 1em;
-    padding: 15px 15px;
+    padding: 15px;
     text-align: left;
     width: 100%;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 1;
+    white-space: nowrap;
+    gap: 1em;
 }
 
 .menu button i {
@@ -100,105 +100,70 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Layout */
 .main-content {
-    overflow-y: scroll;
-    scroll-behavior: smooth;
     width: 100%;
     height: 100vh;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
     display: block;
     justify-content: center;
 }
 
-.bg1 {
+/* Background Sections */
+.bg1, .bg2, .bg3, .bg4 {
     width: 100%;
     height: 100vh;
-    background-color: #ffd5eb;
 }
 
-.bg2 {
-    margin: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: #ffb8dd;
-}
-.bg3 {
-    margin: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: #ff69b7;
-}
-.bg4 {
-    margin: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: #f58edd;
-}
+.bg1 { background-color: #ffd5eb; }
+.bg2 { background-color: #ffb8dd; }
+.bg3 { background-color: #ff69b7; }
+.bg4 { background-color: #f58edd; }
 
-.sect1 {
+/* Section Styling */
+.sect1, .sect2, .sect3, .sect4 {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.sect2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 5px;
-}
-
-.sect3 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.sect4 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-.content {
-    margin-top: 20px;
-    display: flex;
-}
-
-
-.heading1 {
+/* Headings */
+.heading1, .comingsoon {
     margin-top: 150px;
-    margin-bottom: 0;
     text-align: center;
-    color: #a80d0d;
     font-size: 5em;
+    color: #a80d0d;
 }
+
+.heading2 {
+    margin-top: 0;
+    text-align: center;
+    font-size: 2.5em;
+    color: #d42b2b;
+}
+
 .comingsoon {
     margin-top: 20vh;
-    margin-bottom: 0;
-    text-align: center;
-    color: #a80d0d;
-    font-size: 5em;
 }
 
-
-
+/* Text */
 .text1 {
-   text-align: center;
-   font-family: pine; 
-   font-size: 1.25em;
+    text-align: center;
+    font-family: pine;
+    font-size: 1.25em;
 }
 
-
+/* Button */
 .startBtn1 {
-    height: 4rem;
     width: 12rem;
+    height: 4rem;
     background: linear-gradient(135deg, #a80d2c, #ff9cca);
     border: none;
     border-radius: 20px;
     font-family: pine;
     font-size: 1.5em;
-    color: #FFFFFF;
+    color: white;
     box-shadow: 0 0 15px 5px #cd0029;
     transition: width 0.3s ease;
 }
@@ -208,29 +173,17 @@ body {
     box-shadow: 0 0 15px 5px #770018;
 }
 
-
-.heading2 {
-    margin-top: 0px;
-    text-align: center;
-    color: #d42b2b;
-    font-size: 2.5em;
-}
-
+/* "My Lists" Section */
 #content {
-    margin-top:20px;
-    background-color: #f58edd;
-    border-radius: 8px;
-    box-shadow: 0 10px 15px 10px rgb(0, 0, 0, 0.3);
-    overflow: hidden;
+    margin-top: 20px;
     width: 1300px;
     height: 650px;
+    background-color: #f58edd;
     padding: 5px;
+    border-radius: 8px;
     box-sizing: border-box;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
+    box-shadow: 0 10px 15px 10px rgba(0, 0, 0, 0.3);
     overflow-y: scroll;
-    -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
@@ -240,40 +193,37 @@ body {
 
 #taskheader {
     display: flex;
-    align-items: left;
-    justify-content: left;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.blankdiv,
+#addnotediv {
+    height: 200px;
+    width: 200px;
+    margin: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .blankdiv {
     background-color: #f58edd;
     border: none;
     padding: 20px;
-    border-radius: 8px;
-    height: 200px;
-    width: 200px;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 #addnotediv {
     background-color: #ff3aa0;
-    border: 1px solid #ddd;
     padding: 20px;
-    border-radius: 8px;
-    height: 200px;
-    width: 200px;
-    margin: 10px;
+    border: 1px solid #ddd;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 #addnotediv:hover {
-    transition: 0.25s ease;
     background-color: #ff2067;
+    transition: 0.25s ease;
 }
 
 #addnotediv i {
@@ -283,63 +233,59 @@ body {
 
 #listcont {
     display: flex;
-    align-items: left;
-    justify-content: left;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 #tasks-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    flex-wrap: wrap;
-    text-align: center;
     display: inline-flex;
+    flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
     justify-content: space-between;
+    text-align: center;
 }
 
 .list {
-    color: #ffd8f8;
-    background-color: #950032;
-    margin: 5px 0;
+    width: 200px;
+    height: 200px;
+    margin: 10px;
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
+    background-color: #950032;
+    color: #ffd8f8;
+    box-shadow: 9px 9px 18px #b3b3b3, -9px -9px 18px #fff;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 200px;
-    height: 200px;
-    margin: 10px;
-    border-radius: 10px;
-    box-shadow: 9px 9px 18px #b3b3b3 -9px -9px 18px #fff;
+}
+
+.list span {
+    font-size: 2em;
+    margin-top: 30%;
+    flex-grow: 1;
+    overflow-y: scroll;
+    word-wrap: break-word;
+    scrollbar-width: none;
 }
 
 .list span::-webkit-scrollbar {
     display: none;
 }
 
-
-.list span {
-    margin-top: 30%;
-    font-size: 2em;
-    flex-grow: 1;
-    word-wrap: break-word;
-    overflow-y: scroll;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
+/* Buttons in notes */
 #editBtn,
 #deleteBtn {
-    background-color: #ff6060;
-    color: #fff;
-    border: none;
+    width: 60px;
     padding: 5px 20px;
     margin: 0 5px;
-    cursor: pointer;
-    border-radius: 4px;
     font-size: 12px;
-    width: 60px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #fff;
 }
 
 #editBtn {
@@ -350,28 +296,31 @@ body {
     background-color: #ff8fea;
 }
 
+#deleteBtn {
+    background-color: #ff6060;
+}
+
 #deleteBtn:hover {
     background-color: #75003b;
 }
 
+/* Popup */
 #popup-container {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
     width: 900px;
     height: 550px;
-    background-color: rgb(255, 184, 244);
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    background-color: rgb(255, 184, 244);
     border-radius: 8px;
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
-    align-items: center; 
-    overflow-y: scroll;  
-    -ms-overflow-style: none;
+    overflow-y: scroll;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     scrollbar-width: none;
 }
 
@@ -383,22 +332,23 @@ body {
     display: flex;
 }
 
-
 #submitBtn, #closeBtn {
     width: 150px;
-    background-color: #ff22b5;
-    color: #fff;
-    font-size: 14px;
-    border: none;
-    border-radius: 5px;
     padding: 10px;
-    cursor: pointer;
     margin: 10px;
+    border: none;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #fff;
     font-family: pine;
     font-weight: 100;
+}
+
+#submitBtn {
+    background-color: #ff22b5;
 }
 
 #closeBtn {
     background-color: rgb(58, 58, 58);
 }
-

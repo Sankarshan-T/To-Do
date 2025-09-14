@@ -1,175 +1,172 @@
-onload(displayLists());
+// Initialize
+window.onload = () => {
+    displayLists();
+};
 
-function popup() { 
+// Open the note popup
+function popup() {
     const popupContainer = document.createElement("div");
+
     popupContainer.innerHTML = `
-    <div id="popup-container">
-        <input type="text" id="list-title" placeholder="Enter list title..." />
-        
-        <div class ="items">
-            <div class="row">
-                <input type="text" id="input-box" placeholder="Enter your task here...">
-                <button onclick="addTask()" class="add">Add</button>
+        <div id="popup-container">
+            <input type="text" id="list-title" placeholder="Enter list title..." />
+            <div class="items">
+                <div class="row">
+                    <input type="text" id="input-box" placeholder="Enter your task here...">
+                    <button onclick="addTask()" class="add">Add</button>
+                </div>
+                <div id="list-container"><ul></ul></div>
             </div>
-
-        
-            <div id="list-container">
-                <ul>
-                </ul>
+            <div id="btn-container">
+                <button id="submitBtn" onclick="createList()">Create Note</button>
+                <button id="closeBtn" onclick="closePopup()">Close</button>
             </div>
         </div>
-
-        <div id="btn-container">
-            <button id="submitBtn" onclick="createList()">Create Note</button>
-            <button id="closeBtn" onclick="closePopup()">Close</button>
-        </div>
-    </div>
     `;
 
-    document.body.appendChild(popupContainer); 
+    document.body.appendChild(popupContainer);
 
     const listContainer = document.getElementById("list-container");
 
     listContainer.addEventListener("click", function (e) {
         if (e.target.tagName === "LI") {
             e.target.classList.toggle("checked");
-             
         } else if (e.target.tagName === "SPAN") {
             e.target.parentElement.remove();
-             
         }
     });
-    
 }
 
-function createList() { 
+// Create and save a new list
+function createList() {
     const popupContainer = document.getElementById("popup-container");
     const listContainer = document.getElementById("list-container");
-    const listTitle = document.getElementById("list-title").value;
+    const listTitle = document.getElementById("list-title").value || "Untitled";
 
     const list = {
-        id: new Date().getTime(),
-        title: listTitle || "Untitled",
+        id: Date.now(),
+        title: listTitle,
         list: listContainer.innerHTML
     };
 
-    let existingLists = JSON.parse(localStorage.getItem('lists'))  || [];
+    let lists = JSON.parse(localStorage.getItem("lists")) || [];
+    lists.push(list);
 
-    if (!Array.isArray(existingLists)) {
-        existingLists = [];  
-    }
+    localStorage.setItem("lists", JSON.stringify(lists));
 
-    existingLists.push(list);
-
-    localStorage.setItem('lists', JSON.stringify(existingLists));
-    document.getElementById('list-container').value = '';
-            
-    popupContainer.remove();
+    closePopup();
     displayLists();
 }
-        
 
-
+// Close the popup
 function closePopup() {
     const popupContainer = document.getElementById("popup-container");
-    if(popupContainer) {
-        popupContainer.remove();
-    }
+    if (popupContainer) popupContainer.remove();
 }
 
+// Display saved lists
 function displayLists() {
     const tasksList = document.getElementById("tasks-list");
-    tasksList.innerHTML = '';
+    tasksList.innerHTML = "";
 
-    const lists = JSON.parse(localStorage.getItem('lists')) || [];
+    const lists = JSON.parse(localStorage.getItem("lists")) || [];
 
-    lists.forEach(list => {
-        const listitem = document.createElement("li");
-        listitem.classList.add("list");
-        listitem.innerHTML = `
-        <span>${list.title}</span>
-        <div id="noteBtns-container">
-            <button id="editBtn" onclick="editList(${list.id})"><i class="fa-solid fa-pen"></i></button>
-            <button id="deleteBtn" onclick="deleteNote(${list.id})"><i class="fa-solid fa-trash"></i></button>
-        </div>
+    lists.forEach((list) => {
+        const listItem = document.createElement("li");
+        listItem.classList.add("list");
+
+        listItem.innerHTML = `
+            <span>${list.title}</span>
+            <div id="noteBtns-container">
+                <button id="editBtn" onclick="editList(${list.id})"><i class="fa-solid fa-pen"></i></button>
+                <button id="deleteBtn" onclick="deleteNote(${list.id})"><i class="fa-solid fa-trash"></i></button>
+            </div>
         `;
 
-        tasksList.appendChild(listitem);    
+        tasksList.appendChild(listItem);
     });
 }
 
- function editList(listId) {
-    
-    const lists = JSON.parse(localStorage.getItem('lists')) || [];
-    const listToEdit = lists.find(list => list.id === listId);
-    
-
+// Edit existing list
+function editList(listId) {
+    const lists = JSON.parse(localStorage.getItem("lists")) || [];
+    const listToEdit = lists.find((list) => list.id === listId);
     if (!listToEdit) return;
 
     popup();
 
-    const listContainer = document.getElementById("list-container");
-    const listTitleInput = document.getElementById("list-title");
-
-    listContainer.innerHTML = listToEdit.list;
-    listTitleInput.value = listToEdit.title;
-
+    document.getElementById("list-title").value = listToEdit.title;
+    document.getElementById("list-container").innerHTML = listToEdit.list;
 
     const submitBtn = document.getElementById("submitBtn");
     submitBtn.textContent = "Update Note";
 
     submitBtn.onclick = function () {
         listToEdit.title = document.getElementById("list-title").value || "Untitled";
-        listToEdit.list = listContainer.innerHTML;
+        listToEdit.list = document.getElementById("list-container").innerHTML;
+
+        const updatedLists = lists.map((list) =>
+            list.id === listId ? listToEdit : list
+        );
+
+        localStorage.setItem("lists", JSON.stringify(updatedLists));
+        closePopup();
+        displayLists();
+    };
+}
+
+// Delete note
+function deleteNote(listId) {
+    let lists = JSON.parse(localStorage.getItem("lists")) || [];
+    lists = lists.filter((list) => list.id !== listId);
+
+    localStorage.setItem("lists", JSON.stringify(lists));
+    displayLists();
+}
+
+// Add a task to the popup
+function addTask() {
+    const inputBox = document.getElementById("input-box");
+    const listContainer = document.getElementById("list-container");
+
+    if (!inputBox.value.trim()) {
+        alert("You must enter your task first!");
+        return;
+    }
+
+    const li = document.createElement("li");
+    li.textContent = inputBox.value;
+
+    const span = document.createElement("span");
+    span.innerHTML = "\u00d7"; // Unicode for ×
     
 
-    const updatedLists = lists.map(list =>
-            list.id === listId ? listToEdit : list
-    );
+    const tagDropdown = document.createElement("select");
 
-    localStorage.setItem('lists', JSON.stringify(updatedLists));
-    closePopup();
-    displayLists();
-    };
+    const tag1 = document.createElement("option");
+    tag1.value = "Math";
+    tag1.textContent = "Math";
 
-} 
+    const tag2 = document.createElement("option");
+    tag2.value = "naturalScience";
+    tag2.textContent = "Natural Science";
 
-function deleteNote(listId) {
-    let lists = JSON.parse(localStorage.getItem('lists')) || [];
+    const tag3 = document.createElement("option");
+    tag3.value = "socialScience";
+    tag3.textContent = "Social Science";
 
-    lists = lists.filter(list => list.id !== listId);
+    const tag4 = document.createElement("option");
+    tag4.value = "english";
+    tag4.textContent = "English";
 
-    localStorage.setItem('lists', JSON.stringify(lists));
+    tagDropdown.appendChild(tag1);
+    tagDropdown.appendChild(tag2);
+    tagDropdown.appendChild(tag3);
+    tagDropdown.appendChild(tag4);
 
-    displayLists();
-}
+    li.appendChild(span);
+    li.appendChild(tagDropdown);
 
-function addTask() {
-       const inputBox = document.getElementById("input-box");  
-       const listContainer = document.getElementById("list-container");
-       if (inputBox.value === '') {
-           alert('You must enter your task first!');
-       }
-       else {
-           let li= document.createElement("li");
-           li.innerHTML = inputBox.value;
-           listContainer.appendChild(li);
-           let span = document.createElement("span")
-           span.innerHTML = '\u00d7';
-           li.appendChild(span);
-       }
-       inputBox.value = '';
-     
-}
-
-function saveData() {
-    const listContainer = document.getElementById("list-container");
-    if (listContainer) {
-            localStorage.setItem("data", listContainer.innerHTML);
-    }
-}
-
-function showTask() {
-    const listContainer = document.getElementById("list-container");
-    listContainer.innerHTML = localStorage.getItem("data")
+    listContainer.appendChild(li);
+    inputBox.value = "";
 }

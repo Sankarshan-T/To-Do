@@ -15,6 +15,7 @@ body {
     background-color: #ffd5eb;
 }
 
+/* Sidebar (already styled in mainstyle.css, but here in case this file is standalone) */
 .sidebar {
     width: 60px;
     background-color: #a71a65;
@@ -54,9 +55,9 @@ body {
 .menu {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: flex-start;
     padding: 10px;
+    justify-content: space-evenly;
 }
 
 .menu a {
@@ -65,19 +66,19 @@ body {
 }
 
 .menu button {
-    white-space: nowrap;
     font-family: pine;
+    font-size: 1em;
     background: none;
     border: none;
     color: white;
-    font-size: 1em;
-    padding: 15px 15px;
+    padding: 15px;
     text-align: left;
     width: 100%;
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 1;
+    white-space: nowrap;
+    gap: 1em;
 }
 
 .menu button i {
@@ -100,6 +101,7 @@ body {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
+/* Note Editor Layout */
 .maintext {
     margin-top: 60px;
     margin-left: 60px;
@@ -108,7 +110,6 @@ body {
 .content {
     width: 100%;
     overflow-x: scroll;
-    -ms-overflow-style: none;
     scrollbar-width: none;
 }
 
@@ -116,7 +117,7 @@ body {
     display: none;
 }
 
-
+/* Title and Change Button */
 .titlecont {
     position: relative;
     top: 20px;
@@ -124,47 +125,43 @@ body {
     justify-content: center;
 }
 
-
 .titletext {
-    max-width: 200px;
+    width: 200px;
     height: 40px;
     text-align: center;
     font-family: lemon;
-    resize: none;
     font-size: 1.5em;
     color: white;
     background-color: #da3d93;
     border: 1px solid black;
     border-radius: 7px;
+    resize: none;
 }
 
 .titletext::placeholder {
     color: #ffd5eb;
 }
 
-
 .changebtn {
-    position: relative;
-    left: 15px;
-    top: 4px;
-    text-align: center;
+    margin-left: 15px;
+    margin-top: 4px;
+    width: 100px;
+    height: 35px;
     padding: 0;
     border-radius: 20px;
-    height: 35px;
-    width: 100px;
+    text-align: center;
 }
 
+/* Todo Container */
 .todocont {
-    margin-top: 50px;
-    margin-left: 60px;
+    margin: 50px 0 0 60px;
     width: 90%;
-    height: fit-content;
-    min-height: 80vh;
     min-width: 100vh;
-    border-radius: 20px;
+    min-height: 80vh;
+    height: fit-content;
+    padding: 10px 10px 25px;
     background: linear-gradient(135deg, #bf1e76, #ffa4d6);
-    padding: 10px;
-    padding-bottom: 25px;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
 }
@@ -172,12 +169,10 @@ body {
 .todoapp {
     width: 100%;
     max-width: 540px;
-    height: fit-content;
     background: #ffc7e6a0;
-    margin-top: 30px;
     padding: 40px 30px 70px;
+    margin-top: 30px;
     border-radius: 10px;
-
 }
 
 .appcont {
@@ -186,20 +181,19 @@ body {
     justify-content: center;
 }
 
+/* Header */
 .todoapp h2 {
     color: #931056;
     display: flex;
     align-items: center;
-    margin-top: 5px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 20px;
+    margin: 5px auto 20px;
 }
 
 .todoapp h2 i {
     margin-left: 10px;
 }
 
+/* Input Row */
 .row {
     display: flex;
     align-items: center;
@@ -226,37 +220,37 @@ body {
     border: none;
     outline: none;
     padding: 16px 50px;
-    color: #f1bbd9;
     background: #ff1281;
+    color: #f1bbd9;
     font-size: 1em;
-    cursor: pointer;
     border-radius: 40px;
+    cursor: pointer;
 }
 
-
+/* Task List */
 #list-container li {
     list-style: none;
     font-size: 1.5em;
     font-family: pine;
     color: #280418;
     padding: 12px 8px 12px 35px;
-    user-select: none;
-    cursor: pointer;
     position: relative;
     text-align: left;
+    user-select: none;
+    cursor: pointer;
 }
 
 #list-container li::before {
     content: '';
     position: absolute;
+    top: 18px;
+    left: 0;
     height: 28px;
     width: 28px;
     border-radius: 50%;
-    background-image: url('imgs/unchecked.svg');
     background-size: cover;
     background-position: center;
-    top: 18px;
-    left: 0px;
+    background-image: url('imgs/unchecked.svg');
 }
 
 #list-container li.checked {
@@ -265,28 +259,19 @@ body {
 }
 
 #list-container li.checked::before {
-    content: '';
-    position: absolute;
-    height: 28px;
-    width: 28px;
-    border-radius: 50%;
     background-image: url('imgs/checked.svg');
-    background-size: cover;
-    background-position: center;
-    top: 18px;
-    left: 0px;
 }
 
 #list-container li span {
     position: absolute;
-    right: 20;
     top: 15px;
+    right: 20px;
     width: 40px;
     height: 40px;
     font-size: 22px;
-    color: #610059;
     line-height: 40px;
     text-align: center;
+    color: #610059;
     border-radius: 50px;
 }
 
@@ -294,12 +279,24 @@ body {
     background: #a71a65;
 }
 
+/* List Title Input */
 #list-title {
     margin: 20px;
     height: 40px;
+    font-size: 1.5em;
     border: 1px solid black;
     border-radius: 10px;
     background-color: #ff8aca;
     text-align: center;
-    font-size: 1.5em;
+}
+
+/* Dropdown for tag */
+#list-container li select {
+    cursor: pointer;
+    color: #280418;
+    background-color: rgb(255, 110, 187);
+    border-radius: 20px;
+    border: 0.5px solid #280418;
+    margin-left: 10px;
+    padding: 5px;
 }
