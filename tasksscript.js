@@ -13,8 +13,11 @@ function popup() {
             <div class="items">
                 <div class="row">
                     <input type="text" id="input-box" placeholder="Enter your task here...">
+                    <input type="text" id="tag" placeholder="Enter a tag..." />
                     <button onclick="addTask()" class="add">Add</button>
+                    
                 </div>
+    
                 <div id="list-container"><ul></ul></div>
             </div>
             <div id="btn-container">
@@ -27,11 +30,13 @@ function popup() {
     document.body.appendChild(popupContainer);
 
     const listContainer = document.getElementById("list-container");
+    
 
     listContainer.addEventListener("click", function (e) {
-        if (e.target.tagName === "LI") {
-            e.target.classList.toggle("checked");
-        } else if (e.target.tagName === "SPAN") {
+        const clickedElement = e.target;
+        if (clickedElement.tagName === "LI") {
+            clickedElement.classList.toggle("checked");
+        } else if (clickedElement.classList.contains("close-btn")) {
             e.target.parentElement.remove();
         }
     });
@@ -127,6 +132,7 @@ function deleteNote(listId) {
 // Add a task to the popup
 function addTask() {
     const inputBox = document.getElementById("input-box");
+    const tag = document.getElementById("tag");
     const listContainer = document.getElementById("list-container");
 
     if (!inputBox.value.trim()) {
@@ -137,36 +143,22 @@ function addTask() {
     const li = document.createElement("li");
     li.textContent = inputBox.value;
 
+    const tagSpan = document.createElement("span");
+    tagSpan.textContent = tag.value.trim() ? `#${tag.value.trim()}` : '';
+
+    if(tagSpan.textContent){
+        tagSpan.classList.add("task-tag");
+    }
+
     const span = document.createElement("span");
     span.innerHTML = "\u00d7"; // Unicode for ×
-    
+    span.classList.add("close-btn")
 
-    const tagDropdown = document.createElement("select");
-
-    const tag1 = document.createElement("option");
-    tag1.value = "Math";
-    tag1.textContent = "Math";
-
-    const tag2 = document.createElement("option");
-    tag2.value = "naturalScience";
-    tag2.textContent = "Natural Science";
-
-    const tag3 = document.createElement("option");
-    tag3.value = "socialScience";
-    tag3.textContent = "Social Science";
-
-    const tag4 = document.createElement("option");
-    tag4.value = "english";
-    tag4.textContent = "English";
-
-    tagDropdown.appendChild(tag1);
-    tagDropdown.appendChild(tag2);
-    tagDropdown.appendChild(tag3);
-    tagDropdown.appendChild(tag4);
-
+    li.appendChild(tagSpan);
     li.appendChild(span);
-    li.appendChild(tagDropdown);
+
 
     listContainer.appendChild(li);
     inputBox.value = "";
+    tag.value = "";
 }

@@ -216,6 +216,19 @@ body {
     color: #482a3a;
 }
 
+#tag {
+    border-radius: 10px;
+    border: 0.5px solid black;
+    background: #ff2fbd;
+    width: 100px;
+    margin-right: 10px;
+}
+
+#tag::placeholder {
+    font-size: 1em;
+    color: #482a3a;
+}
+
 .add {
     border: none;
     outline: none;
@@ -238,6 +251,9 @@ body {
     text-align: left;
     user-select: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 #list-container li::before {
@@ -262,7 +278,18 @@ body {
     background-image: url('imgs/checked.svg');
 }
 
-#list-container li span {
+.task-tag {
+    margin-right: 10px;
+    font-size: 0.9em;
+    color: #610059;
+    font-family: pine;
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.close-btn {
     position: absolute;
     top: 15px;
     right: 20px;
@@ -273,9 +300,10 @@ body {
     text-align: center;
     color: #610059;
     border-radius: 50px;
+    cursor: pointer;
 }
 
-#list-container li span:hover {
+.close-btn:hover {
     background: #a71a65;
 }
 
