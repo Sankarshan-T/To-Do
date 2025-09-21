@@ -5,7 +5,10 @@
     <title>Task Trackr!</title>
     <link rel="icon" type="image/x-icon" href="imgs/logo2.png">
     <link rel="stylesheet" href="mainstyle.css">
+    <link rel="stylesheet" href="mylists.css">
+    <link rel="stylesheet" href="canvases.css">
     <link rel="stylesheet" href="notestyle.css">
+    <link rel="stylesheet" href="canvasstyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -41,8 +44,7 @@
         </section>
 
         <section class="bg2" id="mylists">
-            <div class="sect2">
-                <div id="content">
+            <div id="content">
                     <h1 class="heading2">My Lists</h1>
                     <div id="taskheader">
                         <div id="addnotediv" onclick="popup()">
@@ -54,14 +56,22 @@
                     <div id="listcont">
                         <ul id="tasks-list"></ul>
                     </div>
-                </div>
             </div>
         </section>
 
         <section class="bg3" id="canvases">
-            <div class="sect3">
-                <h1 class="comingsoon">Coming Soon...</h1>
-                <p class="text1">Woohoo! Stay tuned! canvases are coming soon!!</p>
+            <div id="canvascontent">
+                
+                    <h1 class="heading3">Canvases</h1>
+                    <div id="canvasheader">
+                        <div id="addcanvasdiv" onclick="canvaspopup()">
+                            <i class="fa-solid fa-plus plus"></i>
+                        </div>
+                    </div>
+                    <!-- <div id="canvascont">
+                        <ul id="canvaslist"></ul>
+                    </div> -->
+                
             </div>
         </section>
 
@@ -78,7 +88,7 @@
             </div>
         </section>
     </div>
-
     <script src="tasksscript.js"></script>
+    <script src="canvas.js"></script>
 </body>
 </html>

@@ -44,7 +44,6 @@ function popup() {
 
 // Create and save a new list
 function createList() {
-    const popupContainer = document.getElementById("popup-container");
     const listContainer = document.getElementById("list-container");
     const listTitle = document.getElementById("list-title").value || "Untitled";
 
