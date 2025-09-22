@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="canvases.css">
     <link rel="stylesheet" href="notestyle.css">
     <link rel="stylesheet" href="canvasstyle.css">
+    <link rel="stylesheet" href="notebooks.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
@@ -22,6 +23,7 @@
             <a href="#home"><button><i class="fas fa-home"></i><span>Home</span></button></a>
             <a href="#mylists"><button><i class="fas fa-clipboard-list"></i><span>My Lists</span></button></a>
             <a href="#canvases"><button><i class="fa-solid fa-pen-to-square"></i><span>Canvases</span></button></a>
+            <a href="#notebooks"><button><i class="fa-solid fa-book"></i><span>Notebooks</span></button></a>
             <a href="#about"><button><i class="fas fa-info-circle"></i><span>About</span></button></a>
         </div>
     </nav>
@@ -75,13 +77,27 @@
             </div>
         </section>
 
+        <section class="bg5" id="notebooks">
+            <div id="notebooks">                
+                    <h1 class="heading3">Notebooks</h1>
+                    <div id="notebookHeader">
+                        <div id="addNotebookdiv" onclick="notebookPopup()">
+                            <i class="fa-solid fa-plus plus"></i>
+                        </div>
+                    </div>
+                    <div id="notebookcont">
+                        <ul id="notebook-list"></ul>
+                    </div>
+                
+            </div>
+        </section>
+
         <section class="bg4" id="about">
             <div class="sect4">
                 <h1 class="heading1">About</h1>
                 <p class="text1">
                     This was one of my first websites—simple, but I hope helpful.<br><br>
                     Keep track of homework, tests, and projects.<br>
-                    canvases and tags are coming soon!<br>
                     It's a simple, colorful app to stay organized and reduce stress.<br><br>
                     — CoolCream
                 </p>
@@ -90,5 +106,6 @@
     </div>
     <script src="tasksscript.js"></script>
     <script src="canvas.js"></script>
+    <script src="notebook.js"></script>
 </body>
 </html>

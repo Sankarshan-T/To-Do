@@ -1,7 +1,6 @@
 // Initialize
-window.onload = () => {
-    displayLists();
-};
+displayLists();
+
 
 // Open the note popup
 function popup() {
@@ -22,7 +21,7 @@ function popup() {
             </div>
             <div id="btn-container">
                 <button id="submitBtn" onclick="createList()">Create Note</button>
-                <button id="closeBtn" onclick="closePopup()">Close</button>
+                <button id="closeBtn" onclick="closetodoPopup()">Close</button>
             </div>
         </div>
     `;
@@ -58,12 +57,12 @@ function createList() {
 
     localStorage.setItem("lists", JSON.stringify(lists));
 
-    closePopup();
+    closetodoPopup();
     displayLists();
 }
 
 // Close the popup
-function closePopup() {
+function closetodoPopup() {
     const popupContainer = document.getElementById("popup-container");
     if (popupContainer) popupContainer.remove();
 }
