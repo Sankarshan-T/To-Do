@@ -1,3 +1,4 @@
+/* Custom Fonts */
 @font-face {
     font-family: pine;
     src: url("fonts/PineWords-xRZZR.ttf");
@@ -8,17 +9,19 @@
     src: url("fonts/LemonMilkLight-owxMq.otf");
 }
 
+/* Shapes Icon Styles */
 .shapesicons {
     width: 15px;
     height: auto;
     margin: 0;
 }
 
+/* Tools Board */
 .tools-board {
     background: #ff88c9;
     border: 2px solid black;
     width: 210px;
-    padding: 15px 22px 15px;
+    padding: 15px 22px;
     border-radius: 20px;
     margin-left: 20px;
 }
@@ -29,7 +32,7 @@
 
 .toolrow .options {
     list-style: none;
-    margin: 10px 0 0 0px;
+    margin-top: 10px;
     padding-left: 20px;
 }
 
@@ -37,30 +40,30 @@
     display: flex;
     cursor: pointer;
     align-items: center;
-    margin: 0 0 10px 0;
+    margin-bottom: 10px;
 }
 
 .option:is(:hover, .active) img {
-    filter: invert(30%) sepia(40%) saturate(1000%)
-            hue-rotate(300deg) brightness(100%) contrast(500%);
+    filter: invert(30%) sepia(40%) saturate(1000%) hue-rotate(300deg) brightness(100%) contrast(500%);
 }
 
 .option:is(:hover, .active) i {
-    filter: invert(30%) sepia(40%) saturate(2000%)
-            hue-rotate(400deg) brightness(100%) contrast(200%);
+    filter: invert(30%) sepia(40%) saturate(2000%) hue-rotate(400deg) brightness(100%) contrast(200%);
 }
 
-.option:is(:hover, .active) :where(span, label) {
+.option:is(:hover, .active) span, 
+.option:is(:hover, .active) label {
     color: #920000;
 }
 
-.option :where(span, label) {
+.option span, 
+.option label {
     color: #71004f;
     padding-left: 10px;
     cursor: pointer;
 }
 
-.option #fill-color {
+#fill-color {
     height: 14px;
     width: 14px;
     cursor: pointer;
@@ -70,12 +73,13 @@
     color: #920000;
 }
 
-option #size-slider {
+#size-slider {
     width: 100%;
     height: 5px;
     margin-top: 10px;
 }
 
+/* Color Picker */
 .colorsrow .options {
     display: flex;
     justify-content: space-between;
@@ -84,34 +88,33 @@ option #size-slider {
 .colorsrow .option {
     width: 20px;
     height: 20px;
-
-    border-radius: 50px;
+    border-radius: 50%;
     margin-top: 3px;
     position: relative;
 }
 
-.colorsrow .option:nth-child(1){
+.colorsrow .option:nth-child(1) {
     background: rgb(255, 255, 255);
     border: 1px solid rgb(0, 0, 0);
 }
 
-.colorsrow .option:nth-child(2){
+.colorsrow .option:nth-child(2) {
     background: rgb(255, 0, 0);
 }
 
-.colorsrow .option:nth-child(3){
+.colorsrow .option:nth-child(3) {
     background: rgb(64, 0, 255);
 }
 
-.colorsrow .option:nth-child(4){
+.colorsrow .option:nth-child(4) {
     background: rgb(38, 255, 0);
 }
 
-.colorsrow .option:nth-child(5){
+.colorsrow .option:nth-child(5) {
     background-image: linear-gradient(135deg, #b235ff, #920000);
 }
 
-.colorsrow .option.selected:before {
+.colorsrow .option.selected::before {
     position: absolute;
     content: "";
     top: 50%;
@@ -128,11 +131,12 @@ option #size-slider {
     border-color: #5f5f5f;
 }
 
-.colorsrow #color-picker {
+#color-picker {
     opacity: 0;
     cursor: pointer;
 }
 
+/* Buttons */
 .buttonsrow button {
     width: 100%;
     height: 30px;
@@ -148,33 +152,30 @@ option #size-slider {
     justify-content: center;
     cursor: pointer;
     font-size: 0.7em;
+    transition: box-shadow 0.3s ease, font-size 0.3s ease;
 }
 
 .buttonsrow button:hover {
     box-shadow: 0px 0px 10px #920086;
     font-size: 1em;
-    transition: box-shadow ease 0.3s;
-    transition: font-size ease 0.3s;
 }
 
 .buttonsrow .clear-canvas {
     background: #ff328e;
     border: 1px solid #ffffff;
-    color: #ffffff;
 }
 
 .buttonsrow .save-img {
     background: #ff357c;
     border: 1px solid #ffffff;
-    color: #ffffff;
 }
 
 .buttonsrow .close-canvas {
     background: #b235ff;
     border: 1px solid #ffffff;
-    color: #ffffff;
 }
 
+/* Drawing Board */
 .drawing-board {
     background-color: #ffd6ed;
     border-radius: 20px;

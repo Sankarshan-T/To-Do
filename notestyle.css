@@ -1,3 +1,4 @@
+/* Font Faces */
 @font-face {
     font-family: pine;
     src: url("fonts/PineWords-xRZZR.ttf");
@@ -8,14 +9,15 @@
     src: url("fonts/LemonMilkLight-owxMq.otf");
 }
 
+/* Global Styling */
 body {
     margin: 0;
     display: flex;
-    font-family: lemon;
+    font-family: lemon, sans-serif;
     background-color: #ffd5eb;
 }
 
-/* Sidebar (already styled in mainstyle.css, but here in case this file is standalone) */
+/* Sidebar */
 .sidebar {
     width: 60px;
     background-color: #a71a65;
@@ -27,6 +29,7 @@ body {
 
 .sidebar:hover {
     width: 210px;
+    overflow: visible;
 }
 
 .logo-title {
@@ -57,7 +60,6 @@ body {
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
-    justify-content: space-evenly;
 }
 
 .menu a {
@@ -72,22 +74,21 @@ body {
     border: none;
     color: white;
     padding: 15px;
-    text-align: left;
     width: 100%;
-    cursor: pointer;
     display: flex;
     align-items: center;
-    white-space: nowrap;
     gap: 1em;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.menu button i {
-    font-size: 1.2em;
-    min-width: 20px;
+.menu button:hover {
+    color: #A3BFFA;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .menu button span {
-    margin-left: 10px;
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -96,12 +97,11 @@ body {
     opacity: 1;
 }
 
-.menu button:hover {
-    color: #A3BFFA;
-    background-color: rgba(255, 255, 255, 0.1);
+.menu button i {
+    font-size: 1.2em;
 }
 
-/* Note Editor Layout */
+/* Todo Editor Layout */
 .maintext {
     margin-top: 60px;
     margin-left: 60px;
@@ -135,7 +135,6 @@ body {
     background-color: #da3d93;
     border: 1px solid black;
     border-radius: 7px;
-    resize: none;
 }
 
 .titletext::placeholder {
@@ -253,7 +252,6 @@ body {
     cursor: pointer;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
 }
 
 #list-container li::before {
@@ -318,7 +316,7 @@ body {
     text-align: center;
 }
 
-/* Dropdown for tag */
+/* Dropdown for Tag */
 #list-container li select {
     cursor: pointer;
     color: #280418;
@@ -327,4 +325,36 @@ body {
     border: 0.5px solid #280418;
     margin-left: 10px;
     padding: 5px;
+}
+
+/* Scrollbar Customization */
+.content::-webkit-scrollbar {
+    display: none;
+}
+
+#list-container li::before {
+    background-size: 24px;
+}
+
+/* Popup */
+#notebookpopup, #popup-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 650px;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow-y: scroll;
+    background-color: rgb(255, 184, 244);
+}
+
+#notebookpopup::-webkit-scrollbar, #popup-container::-webkit-scrollbar {
+    display: none;
 }

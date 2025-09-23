@@ -1,3 +1,4 @@
+/* Custom Fonts */
 @font-face {
     font-family: pine;
     src: url("fonts/PineWords-xRZZR.ttf");
@@ -8,6 +9,7 @@
     src: url("fonts/LemonMilkLight-owxMq.otf");
 }
 
+/* Global Body Styling */
 body {
     margin: 0;
     display: flex;
@@ -15,6 +17,7 @@ body {
     background-color: #ffd5eb;
 }
 
+/* Sidebar */
 .sidebar {
     width: 60px;
     height: 100vh;
@@ -51,10 +54,10 @@ body {
     opacity: 1;
 }
 
+/* Sidebar Menu */
 .menu {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     padding: 10px;
     justify-content: space-evenly;
 }
@@ -76,8 +79,8 @@ body {
     cursor: pointer;
     display: flex;
     align-items: center;
-    white-space: nowrap;
     gap: 1em;
+    white-space: nowrap;
 }
 
 .menu button i {
@@ -116,20 +119,19 @@ body {
     height: 100vh;
 }
 
-.bg1 { position: relative; width: 100%; height: 100vh;}
+.bg1 {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
 .bg2 { background-color: #ffb8dd; }
 .bg3 { background-color: #cb78ff; }
 .bg4 { background-color: #f58edd; }
 .bg5 { background-color: #ff2d9d; }
 
 /* Section Styling */
-.sect1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-}
-.sect2, .sect3, .sect4, .sect5 {
+.sect1, .sect2, .sect3, .sect4, .sect5 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -143,19 +145,14 @@ body {
     color: #a80d0d;
 }
 
-.heading2 {
+.heading2, .heading3 {
     margin-top: 0;
     text-align: center;
     font-size: 2.5em;
-    color: #d42b2b;
 }
 
-.heading3 {
-    margin-top: 0;
-    text-align: center;
-    font-size: 2.5em;
-    color: #7d003a;
-}
+.heading2 { color: #d42b2b; }
+.heading3 { color: #7d003a; }
 
 .comingsoon {
     margin-top: 20vh;
@@ -186,4 +183,3 @@ body {
     width: 15rem;
     box-shadow: 0 0 15px 5px #770018;
 }
-

@@ -7,16 +7,16 @@
     padding: 5px;
     box-sizing: border-box;
     overflow-y: scroll;
-    scrollbar-width: none;
 }
 
+#canvascontent::-webkit-scrollbar,
 #content::-webkit-scrollbar {
     display: none;
 }
 
 #canvasheader {
     display: flex;
-    align-items:center;
+    align-items: center;
     justify-content: center;
 }
 
@@ -32,11 +32,10 @@
     padding: 20px;
     border: 1px solid #ddd;
     cursor: pointer;
+    transition: background-color 0.25s ease;
 }
 
-
 #addcanvasdiv:hover {
-    transition: background-color 0.25s ease;
     background-color: #940047;
 }
 
@@ -80,13 +79,8 @@
     font-size: 2em;
     margin-top: 30%;
     flex-grow: 1;
-    overflow-y: scroll;
+    overflow-y: auto;
     word-wrap: break-word;
-    scrollbar-width: none;
-}
-
-.boardlist span::-webkit-scrollbar {
-    display: none;
 }
 
 /* Buttons in canvases */
@@ -132,9 +126,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    overflow-y: scroll;
+    overflow-y: auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    scrollbar-width: none;
 }
 
 #popup-container::-webkit-scrollbar {
@@ -145,7 +138,8 @@
     display: flex;
 }
 
-#submitBtn, #closeBtn {
+#submitBtn,
+#closeBtn {
     width: 150px;
     padding: 10px;
     margin: 10px;

@@ -20,8 +20,8 @@
     justify-content: flex-start;
 }
 
-.blankdiv,
-#addnotediv {
+/* Blank Div & Add Note Div */
+.blankdiv, #addnotediv {
     height: 200px;
     width: 200px;
     margin: 10px;
@@ -29,7 +29,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
 
 .blankdiv {
@@ -43,11 +42,11 @@
     padding: 20px;
     border: 1px solid #ddd;
     cursor: pointer;
+    transition: background-color 0.25s ease;
 }
 
 #addnotediv:hover {
     background-color: #ff2067;
-    transition: 0.25s ease;
 }
 
 #addnotediv i {
@@ -55,6 +54,7 @@
     color: gainsboro;
 }
 
+/* List Container */
 #listcont {
     display: flex;
     align-items: flex-start;
@@ -71,6 +71,7 @@
     text-align: center;
 }
 
+/* Individual List Item */
 .list {
     width: 200px;
     height: 200px;
@@ -84,6 +85,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    transition: box-shadow 0.3s ease;
+}
+
+.list:hover {
+    box-shadow: 5px 5px 20px 5px #ff5db8;
 }
 
 .list span {
@@ -99,9 +105,8 @@
     display: none;
 }
 
-/* Buttons in notes */
-#editBtn,
-#deleteBtn {
+/* Buttons in Notes */
+#editBtn, #deleteBtn {
     width: 60px;
     padding: 5px 20px;
     margin: 0 5px;
@@ -110,6 +115,7 @@
     border-radius: 4px;
     cursor: pointer;
     color: #fff;
+    transition: background-color 0.3s ease;
 }
 
 #editBtn {
@@ -156,6 +162,7 @@
     display: flex;
 }
 
+/* Submit & Close Buttons */
 #submitBtn, #closeBtn {
     width: 150px;
     padding: 10px;
@@ -167,12 +174,21 @@
     color: #fff;
     font-family: pine;
     font-weight: 100;
+    transition: background-color 0.3s ease;
 }
 
 #submitBtn {
     background-color: #ff22b5;
 }
 
+#submitBtn:hover {
+    background-color: #d51d94;
+}
+
 #closeBtn {
     background-color: rgb(58, 58, 58);
+}
+
+#closeBtn:hover {
+    background-color: #333;
 }

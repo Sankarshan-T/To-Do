@@ -1,14 +1,6 @@
-// // Initialize
-// window.onload = () => {
-//     displayCanvases();
-// };
-
 // Open the note popup
 function canvaspopup() {
-
     const canvaspopup = document.createElement("div");
-   
-
 
     canvaspopup.innerHTML = `
         <div id="canvaspopup">
@@ -17,21 +9,18 @@ function canvaspopup() {
                     <div class="toolrow">
                         <label class="toolTitle">Shapes</label>
                         <ul class="options">
-                            <li class="option tool" id="rectangle"> 
-                                <img class="shapesicons" src="imgs/square.svg"></img>
+                            <li class="option tool" id="rectangle">
+                                <img class="shapesicons" src="imgs/square.svg" alt="Rectangle">
                                 <span>Rectangle</span>
                             </li>
-
-                            <li class="option tool" id="circle"> 
-                                <img class="shapesicons" src="imgs/circle.svg"></img>
+                            <li class="option tool" id="circle">
+                                <img class="shapesicons" src="imgs/circle.svg" alt="Circle">
                                 <span>Circle</span>
                             </li>
-
-                            <li class="option tool" id="triangle"> 
-                                <img class="shapesicons" src="imgs/triangle.svg"></img>
+                            <li class="option tool" id="triangle">
+                                <img class="shapesicons" src="imgs/triangle.svg" alt="Triangle">
                                 <span>Triangle</span>
                             </li>
-
                             <li class="option">
                                 <input type="checkbox" id="fill-color">
                                 <label for="fill-color">Fill color</label>
@@ -46,14 +35,12 @@ function canvaspopup() {
                                 <i class="fa-solid fa-brush"></i>
                                 <span>Brush</span>
                             </li>
-
                             <li class="option tool" id="eraser">
                                 <i class="fa-solid fa-eraser"></i>
                                 <span>Eraser</span>
                             </li>
-
                             <li class="option">
-                                <input type="range" id="size-slider">
+                                <input type="range" id="size-slider" min="1" max="10" value="5">
                             </li>
                         </ul>
                     </div>
@@ -86,16 +73,16 @@ function canvaspopup() {
 
     document.body.appendChild(canvaspopup);
 
-    const canvas = document.querySelector("canvas"),
-    toolbtns = document.querySelectorAll(".tool"),
-    fillColorCeckbox = canvaspopup.querySelector("#fill-color"),
-    sizeSlider = canvaspopup.querySelector("#size-slider"),
-    colorBtns = canvaspopup.querySelectorAll(".colorsrow .option"),
-    colorPicker = canvaspopup.querySelector("#color-picker"),
-    clearCanvasBtn = canvaspopup.querySelector(".clear-canvas"),
-    saveImgBtn = canvaspopup.querySelector(".save-img"),
-    ctx = canvas.getContext("2d");
-    
+    const canvas = canvaspopup.querySelector("canvas"),
+        toolbtns = canvaspopup.querySelectorAll(".tool"),
+        fillColorCeckbox = canvaspopup.querySelector("#fill-color"),
+        sizeSlider = canvaspopup.querySelector("#size-slider"),
+        colorBtns = canvaspopup.querySelectorAll(".colorsrow .option"),
+        colorPicker = canvaspopup.querySelector("#color-picker"),
+        clearCanvasBtn = canvaspopup.querySelector(".clear-canvas"),
+        saveImgBtn = canvaspopup.querySelector(".save-img"),
+        ctx = canvas.getContext("2d");
+
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
 
@@ -103,16 +90,15 @@ function canvaspopup() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     let isDrawing = false,
-    selectedTool = "brush",
-    brushWidth = 5,
-    selectedColor = "red",
-    prevMouseX, prevMouseY,
-    snapshot;
+        selectedTool = "brush",
+        brushWidth = 5,
+        selectedColor = "#ff0000", // default red color
+        prevMouseX, prevMouseY,
+        snapshot;
 
     ctx.fillStyle = selectedColor;
     ctx.strokeStyle = selectedColor;
     ctx.lineWidth = brushWidth;
-
     ctx.lineJoin = 'round';
     ctx.lineCap = 'round';
 
@@ -125,21 +111,21 @@ function canvaspopup() {
         ctx.strokeStyle = selectedTool === "eraser" ? "#ffd6ed" : selectedColor;
         ctx.fillStyle = selectedColor;
         snapshot = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    }
+    };
 
     const drawRect = (e) => {
         const width = e.offsetX - prevMouseX;
         const height = e.offsetY - prevMouseY;
         fillColorCeckbox.checked ? ctx.fillRect(prevMouseX, prevMouseY, width, height)
                                  : ctx.strokeRect(prevMouseX, prevMouseY, width, height);
-    }
+    };
 
     const drawCircle = (e) => {
         const radius = Math.sqrt(Math.pow(e.offsetX - prevMouseX, 2) + Math.pow(e.offsetY - prevMouseY, 2));
         ctx.beginPath();
         ctx.arc(prevMouseX, prevMouseY, radius, 0, 2 * Math.PI);
         fillColorCeckbox.checked ? ctx.fill() : ctx.stroke();
-    }
+    };
 
     const drawTriangle = (e) => {
         ctx.beginPath();
@@ -148,14 +134,12 @@ function canvaspopup() {
         ctx.lineTo(prevMouseX * 2 - e.offsetX, e.offsetY);
         ctx.closePath();
         fillColorCeckbox.checked ? ctx.fill() : ctx.stroke();
-    }
+    };
 
     const drawing = (e) => {
-        if(!isDrawing) return;
-
+        if (!isDrawing) return;
         ctx.putImageData(snapshot, 0, 0);
-
-        if(selectedTool === "brush" || selectedTool === "eraser"){
+        if (selectedTool === "brush" || selectedTool === "eraser") {
             ctx.strokeStyle = selectedTool === "eraser" ? "#ffd6ed" : selectedColor;
             ctx.lineTo(e.offsetX, e.offsetY);
             ctx.stroke();
@@ -166,19 +150,21 @@ function canvaspopup() {
         } else if (selectedTool === "triangle") {
             drawTriangle(e);
         }
-    }
+    };
 
-
+    // Tool selection handling
     toolbtns.forEach(btn => {
         btn.addEventListener("click", () => {
-            document.querySelector(".options .active").classList.remove("active");
-            btn.classList.add("active")
+            canvaspopup.querySelector(".options .active")?.classList.remove("active");
+            btn.classList.add("active");
             selectedTool = btn.id;
         });
     });
 
-    sizeSlider.addEventListener("change", () => brushWidth = sizeSlider.value);
+    // Brush size slider
+    sizeSlider.addEventListener("input", () => brushWidth = sizeSlider.value);
 
+    // Color selection handling
     colorBtns.forEach(btn => {
         btn.addEventListener("click", () => {
             canvaspopup.querySelector(".colorsrow .selected")?.classList.remove("selected");
@@ -188,32 +174,33 @@ function canvaspopup() {
         });
     });
 
-    colorPicker.addEventListener("change", () => {
+    colorPicker.addEventListener("input", () => {
         selectedColor = colorPicker.value;
         colorBtns.forEach(btn => btn.classList.remove("selected"));
     });
 
+    // Clear canvas button
     clearCanvasBtn.addEventListener("click", () => {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "#ffd6ed";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
     });
 
+    // Save canvas as image
     saveImgBtn.addEventListener("click", () => {
         const link = document.createElement("a");
         link.download = `canvas-${Date.now()}.png`;
         link.href = canvas.toDataURL();
         link.click();
-    })
+    });
 
+    // Drawing events
     canvas.addEventListener("mousedown", startDraw);
     canvas.addEventListener("mousemove", drawing);
     canvas.addEventListener("mouseup", () => isDrawing = false);
-
 }
-
 
 function closeCanvasPopup() {
     const canvaspopup = document.getElementById("canvaspopup");
     if (canvaspopup) canvaspopup.remove();
-}   
+}

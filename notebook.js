@@ -31,11 +31,13 @@ function createNotebook() {
         notes: notebookText
     };
 
-    let notebooks = JSON.parse(localStorage.getItem("notebooks")) || [];
-    notebooks.push(notebook);
-
-
-    localStorage.setItem("notebooks", JSON.stringify(notebooks));
+    try {
+        let notebooks = JSON.parse(localStorage.getItem("notebooks")) || [];
+        notebooks.push(notebook);
+        localStorage.setItem("notebooks", JSON.stringify(notebooks));
+    } catch (e) {
+        alert("Failed to save notebook. Please try again.");
+    }
 
     closenotebookPopup();
     displayNotebooks();
@@ -50,23 +52,28 @@ function closenotebookPopup() {
 // Display saved notebooks
 function displayNotebooks() {
     const notebookLists = document.getElementById("notebook-list");
-    notebookLists.innerHTML = "";
+    notebookLists.innerHTML = ""; // Clear current list
 
-    const notebooks = JSON.parse(localStorage.getItem("notebooks")) || [];
+    try {
+        const notebooks = JSON.parse(localStorage.getItem("notebooks")) || [];
 
-    notebooks.forEach((notebook) => {
-        const listItem = document.createElement("li");
-        listItem.classList.add("notebook");
-        listItem.innerHTML = `
-            <span>${notebook.title}</span>
-            <div id="noteBtns-container">
-                <button id="editBtn" onclick="editList(${notebook.id})"><i class="fa-solid fa-pen"></i></button>
-                <button id="deleteBtn" onclick="deleteNotebook(${notebook.id})"><i class="fa-solid fa-trash"></i></button>
-            </div>
-        `;
+        notebooks.forEach((notebook) => {
+            const listItem = document.createElement("li");
+            listItem.classList.add("notebook");
+            listItem.innerHTML = `
+                <span>${notebook.title}</span>
+                <div id="noteBtns-container">
+                    <button id="editBtn" onclick="editList(${notebook.id})"><i class="fa-solid fa-pen"></i></button>
+                    <button id="deleteBtn" onclick="deleteNotebook(${notebook.id})"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            `;
 
-        notebookLists.appendChild(listItem);
-    });
+            notebookLists.appendChild(listItem);
+        });
+    } catch (e) {
+        console.error("Error loading notebooks: ", e);
+        alert("Failed to load notebooks.");
+    }
 }
 
 // Edit existing notebook
@@ -87,11 +94,15 @@ function editList(notebookId) {
         notebookToEdit.title = document.getElementById("notebook-title").value || "Untitled";
         notebookToEdit.notes = document.getElementById("notebook-text").value;
 
-        const updatedNotebooks = notebooks.map((notebook) =>
-            notebook.id === notebookId ? notebookToEdit : notebook
-        );
+        try {
+            const updatedNotebooks = notebooks.map((notebook) =>
+                notebook.id === notebookId ? notebookToEdit : notebook
+            );
+            localStorage.setItem("notebooks", JSON.stringify(updatedNotebooks));
+        } catch (e) {
+            alert("Failed to update notebook. Please try again.");
+        }
 
-        localStorage.setItem("notebooks", JSON.stringify(updatedNotebooks));
         closenotebookPopup();
         displayNotebooks();
     };
@@ -102,6 +113,11 @@ function deleteNotebook(notebookId) {
     let notebooks = JSON.parse(localStorage.getItem("notebooks")) || [];
     notebooks = notebooks.filter((notebook) => notebook.id !== notebookId);
 
-    localStorage.setItem("notebooks", JSON.stringify(notebooks));
+    try {
+        localStorage.setItem("notebooks", JSON.stringify(notebooks));
+    } catch (e) {
+        alert("Failed to delete notebook. Please try again.");
+    }
+
     displayNotebooks();
 }

@@ -1,36 +1,35 @@
 // Initialize
 displayLists();
 
-
 // Open the note popup
 function popup() {
     const popupContainer = document.createElement("div");
-
+    popupContainer.id = "popup-container";
     popupContainer.innerHTML = `
         <div id="popup-container">
             <input type="text" id="list-title" placeholder="Enter list title..." />
             <div class="items">
                 <div class="row">
-                    <input type="text" id="input-box" placeholder="Enter your task here...">
+                    <input type="text" id="input-box" placeholder="Enter your task here..." />
                     <input type="text" id="tag" placeholder="Enter a tag..." />
                     <button onclick="addTask()" class="add">Add</button>
-                    
                 </div>
-    
                 <div id="list-container"><ul></ul></div>
             </div>
             <div id="btn-container">
                 <button id="submitBtn" onclick="createList()">Create Note</button>
-                <button id="closeBtn" onclick="closetodoPopup()">Close</button>
+                <button id="closeBtn" onclick="closeTodoPopup()">Close</button>
             </div>
         </div>
     `;
 
     document.body.appendChild(popupContainer);
+    attachListContainerEvent();
+}
 
+// Attach event listeners to the list container
+function attachListContainerEvent() {
     const listContainer = document.getElementById("list-container");
-    
-
     listContainer.addEventListener("click", function (e) {
         const clickedElement = e.target;
         if (clickedElement.tagName === "LI") {
@@ -49,20 +48,19 @@ function createList() {
     const list = {
         id: Date.now(),
         title: listTitle,
-        list: listContainer.innerHTML
+        listContent: listContainer.innerHTML,
     };
 
     let lists = JSON.parse(localStorage.getItem("lists")) || [];
     lists.push(list);
 
     localStorage.setItem("lists", JSON.stringify(lists));
-
-    closetodoPopup();
+    closeTodoPopup();
     displayLists();
 }
 
 // Close the popup
-function closetodoPopup() {
+function closeTodoPopup() {
     const popupContainer = document.getElementById("popup-container");
     if (popupContainer) popupContainer.remove();
 }
@@ -73,11 +71,9 @@ function displayLists() {
     tasksList.innerHTML = "";
 
     const lists = JSON.parse(localStorage.getItem("lists")) || [];
-
     lists.forEach((list) => {
         const listItem = document.createElement("li");
         listItem.classList.add("list");
-
         listItem.innerHTML = `
             <span>${list.title}</span>
             <div id="noteBtns-container">
@@ -85,7 +81,6 @@ function displayLists() {
                 <button id="deleteBtn" onclick="deleteNote(${list.id})"><i class="fa-solid fa-trash"></i></button>
             </div>
         `;
-
         tasksList.appendChild(listItem);
     });
 }
@@ -97,28 +92,36 @@ function editList(listId) {
     if (!listToEdit) return;
 
     popup();
-
     document.getElementById("list-title").value = listToEdit.title;
-    document.getElementById("list-container").innerHTML = listToEdit.list;
+    document.getElementById("list-container").innerHTML = listToEdit.listContent;
 
     const submitBtn = document.getElementById("submitBtn");
     submitBtn.textContent = "Update Note";
-
     submitBtn.onclick = function () {
-        listToEdit.title = document.getElementById("list-title").value || "Untitled";
-        listToEdit.list = document.getElementById("list-container").innerHTML;
-
-        const updatedLists = lists.map((list) =>
-            list.id === listId ? listToEdit : list
-        );
-
-        localStorage.setItem("lists", JSON.stringify(updatedLists));
-        closePopup();
-        displayLists();
+        updateList(listId);
     };
 }
 
-// Delete note
+// Update the list
+function updateList(listId) {
+    const lists = JSON.parse(localStorage.getItem("lists")) || [];
+    const listToUpdate = lists.find((list) => list.id === listId);
+
+    if (listToUpdate) {
+        listToUpdate.title = document.getElementById("list-title").value || "Untitled";
+        listToUpdate.listContent = document.getElementById("list-container").innerHTML;
+
+        const updatedLists = lists.map((list) =>
+            list.id === listId ? listToUpdate : list
+        );
+
+        localStorage.setItem("lists", JSON.stringify(updatedLists));
+        closeTodoPopup();
+        displayLists();
+    }
+}
+
+// Delete a note
 function deleteNote(listId) {
     let lists = JSON.parse(localStorage.getItem("lists")) || [];
     lists = lists.filter((list) => list.id !== listId);
@@ -127,36 +130,49 @@ function deleteNote(listId) {
     displayLists();
 }
 
-// Add a task to the popup
+// Add a task to the list
 function addTask() {
     const inputBox = document.getElementById("input-box");
-    const tag = document.getElementById("tag");
+    const tagInput = document.getElementById("tag");
     const listContainer = document.getElementById("list-container");
 
     if (!inputBox.value.trim()) {
-        alert("You must enter your task first!");
+        alert("You must enter a task!");
         return;
     }
 
     const li = document.createElement("li");
     li.textContent = inputBox.value;
 
-    const tagSpan = document.createElement("span");
-    tagSpan.textContent = tag.value.trim() ? `#${tag.value.trim()}` : '';
+    const tagSpan = createTagSpan(tagInput.value);
 
-    if(tagSpan.textContent){
+    const closeBtn = createCloseButton();
+
+    li.appendChild(tagSpan);
+    li.appendChild(closeBtn);
+    listContainer.appendChild(li);
+
+    inputBox.value = "";
+    tagInput.value = "";
+}
+
+// Create a tag span element
+function createTagSpan(tagValue) {
+    const tagSpan = document.createElement("span");
+    const tagText = tagValue.trim() ? `#${tagValue.trim()}` : '';
+    
+    if (tagText) {
+        tagSpan.textContent = tagText;
         tagSpan.classList.add("task-tag");
     }
 
+    return tagSpan;
+}
+
+// Create a close button for a task
+function createCloseButton() {
     const span = document.createElement("span");
     span.innerHTML = "\u00d7"; // Unicode for ×
-    span.classList.add("close-btn")
-
-    li.appendChild(tagSpan);
-    li.appendChild(span);
-
-
-    listContainer.appendChild(li);
-    inputBox.value = "";
-    tag.value = "";
+    span.classList.add("close-btn");
+    return span;
 }
