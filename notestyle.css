@@ -337,7 +337,7 @@ body {
 }
 
 /* Popup */
-#notebookpopup, #popup-container {
+#popup-container {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -349,12 +349,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow-y: scroll;
     background-color: rgb(255, 184, 244);
 }
 
-#notebookpopup::-webkit-scrollbar, #popup-container::-webkit-scrollbar {
+#popup-container::-webkit-scrollbar {
     display: none;
 }

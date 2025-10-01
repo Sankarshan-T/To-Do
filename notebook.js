@@ -63,7 +63,7 @@ function displayNotebooks() {
             listItem.innerHTML = `
                 <span>${notebook.title}</span>
                 <div id="noteBtns-container">
-                    <button id="editBtn" onclick="editList(${notebook.id})"><i class="fa-solid fa-pen"></i></button>
+                    <button id="editBtn" onclick="editNotebook(${notebook.id})"><i class="fa-solid fa-pen"></i></button>
                     <button id="deleteBtn" onclick="deleteNotebook(${notebook.id})"><i class="fa-solid fa-trash"></i></button>
                 </div>
             `;
@@ -77,7 +77,7 @@ function displayNotebooks() {
 }
 
 // Edit existing notebook
-function editList(notebookId) {
+function editNotebook(notebookId) {
     const notebooks = JSON.parse(localStorage.getItem("notebooks")) || [];
     const notebookToEdit = notebooks.find((notebook) => notebook.id === notebookId);
     if (!notebookToEdit) return;
